@@ -9,9 +9,10 @@ interface BtnProps {
 }
 
 const StyledBtn = styled.button`
-  display: inline-flex;
+  width: 100%;
   position: relative;
   cursor: pointer;
+  margin: 10px 10px 0 0;
   padding: 10px 30px;
   background: ${"#646df6"};
   outline: none;
@@ -19,12 +20,12 @@ const StyledBtn = styled.button`
   border-radius: 5px;
   font-weight: 600;
   font-family: Inter, sans-serif;
+  align-items: center;
   ${color}
   &:hover  {
       background-color: ${"#4a61bf"};
   }
 `;
-
 
 export const Button: React.FC<BtnProps> = ({ text, onClick }) => {
   return (

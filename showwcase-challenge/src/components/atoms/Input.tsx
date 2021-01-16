@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 interface InputProps {
-  placeholder: string;
-  onClick: () => void;
+  placeholder?: string;
+  value?: string;
+  onClick?: () => void;
+  onChange?: Function;
 }
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   width: 100%;
   flex: 1 1 auto;
   color: currentcolor;
   display: block;
   box-sizing: border-box;
-  padding: 9px 9px;
+  margin: 10px 10px 0 0;
+  padding: 9px;
   font-size: 16px;
   text-align: left;
   transition-timing-function: ease;
@@ -38,13 +41,22 @@ const StyledInput = styled.input`
   }
 `;
 
-export const Input: React.FC<InputProps> = ({ placeholder, onClick }) => {
+export const Input: React.FC<InputProps> = ({ placeholder, value="", onClick }) => {
+  const [inputValue, setInputValue] = useState("");
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    console.log(e.target.value);
+    setInputValue(e.target.value);
+  };
+
   return (
-    <StyledInput placeholder={placeholder} onClick={onClick}></StyledInput>
+    <StyledInput placeholder={placeholder} value={inputValue} onClick={onClick} onChange={onChangeInput}></StyledInput>
   );
 };
 
 Input.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onClick: PropTypes.func,
+  onChange: PropTypes.func,
 };

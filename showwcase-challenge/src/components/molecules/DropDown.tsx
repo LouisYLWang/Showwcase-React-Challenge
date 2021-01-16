@@ -1,11 +1,13 @@
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { color } from "styled-system";
-import { Input } from "../atoms/Input";
+import { Input, StyledInput } from "../atoms/Input";
 import PropTypes from "prop-types";
 
 interface DropDownProps {
-  options?: any;
+  options?: Array<string>;
+  select?: string;
 }
 
 const StyledDropDown = styled.div`
@@ -36,7 +38,7 @@ const StyledDropDownListItem = styled.li`
   text-align: left;
   padding: 9px 12px;
   font-size: 16px;
-
+  user-select: none;
   &:hover {
     background: #f8f9fa;
   }
@@ -44,14 +46,27 @@ const StyledDropDownListItem = styled.li`
 
 export const DropDown: React.FC<DropDownProps> = ({ options = [] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
+  const onOptionClicked = (value: string) => () => {
+    setSelectedOption(value);
+    setIsOpen(false);
+    console.log(selectedOption);
+  };
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setSelectedOption(e.target.value);
+    setIsOpen(true)
+    console.log(isOpen);
+  };
+  
   return (
     <StyledDropDown>
-      <Input placeholder="123" onClick={() => setIsOpen(!isOpen)}></Input>
+      <StyledInput placeholder={"selectedOption"} value={selectedOption} onChange={onChangeInput}></StyledInput>
       {isOpen && (
         <StyledDropDownList>
-          {options.map((option: React.ReactNode, index: number) => (
-            <StyledDropDownListItem onClick={() => {}} key={index}>
+          {options.map((option: string, index: number) => (
+            <StyledDropDownListItem onClick={onOptionClicked(option)} key={index}>
               {option}
             </StyledDropDownListItem>
           ))}
@@ -62,5 +77,6 @@ export const DropDown: React.FC<DropDownProps> = ({ options = [] }) => {
 };
 
 DropDown.propTypes = {
-  options: PropTypes.object,
+  options: PropTypes.array,
+  select: PropTypes.string,
 };
