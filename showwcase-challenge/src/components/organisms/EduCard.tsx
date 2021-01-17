@@ -34,14 +34,14 @@ export const EduCard: React.FC = () => {
   `;
 
   return (
-    <Container>
-      <StyledCard style={{ boxShadow: "Unset", width: "500px" }}>
-        <EduTitle> Graduate Computer Science </EduTitle>
-        <EduTitle> @ Showwcase University</EduTitle>
-        <Date>August 2019 - present</Date>
-          <EduListElement>sadsa</EduListElement>
-          <EduListElement>sasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsadsa</EduListElement>
-      </StyledCard>
-    </Container>
+    <StyledCard style={{ boxShadow: "Unset", width: "35vw" }}>
+      <EduTitle> Graduate Computer Science </EduTitle>
+      <EduTitle> @ Showwcase University</EduTitle>
+      <Date>August 2019 - present</Date>
+      <EduListElement>sadsa</EduListElement>
+      <EduListElement>
+        sasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsasadsadsa
+      </EduListElement>
+    </StyledCard>
   );
 };

@@ -12,7 +12,7 @@ export const Link = styled.a`
   color: currentcolor;
   text-align: left;
   display: flex;
-  margin: 8px 0 0 0;
+  margin: 0 0 8px 0;
   &:link {
     text-decoration: none;
   }
@@ -30,6 +30,13 @@ export const Link = styled.a`
   }
 `;
 
+const GreetTitle = styled.h1`
+    font-family: Inter, sans-serif;
+    text-align: left;
+    font-size: 18px;
+    margin: 5px 0;
+`
+
 export const SideBar: React.FC<SideBarProp> = ({}) => {
   const [selected, setSelected] = useState("");
 
@@ -39,8 +46,13 @@ export const SideBar: React.FC<SideBarProp> = ({}) => {
   };
 
   return (
-    <Container style={{ position: "fixed" }}>
-      <StyledCard style={{ boxShadow: "Unset", width: "200px" }}>
+    <div style={{ position: "fixed" }}>
+      <StyledCard style={{ boxShadow: "Unset", width: "15vw" }}>
+          <GreetTitle>Welcome {"NAME"}!</GreetTitle>
+          Please complete your education information!
+      </StyledCard>
+
+      <StyledCard style={{ boxShadow: "Unset", width: "15vw" }}>
         <Link href="#test123" onClick={() => onSelected}>
           University of Showwcase
         </Link>
@@ -48,7 +60,7 @@ export const SideBar: React.FC<SideBarProp> = ({}) => {
         <Link href="#test123">University of Longlonglong Showwcase</Link>
         <Button>{"+"}</Button>
       </StyledCard>
-    </Container>
+    </div>
   );
 };
 
