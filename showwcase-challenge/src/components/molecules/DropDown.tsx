@@ -50,14 +50,11 @@ export const DropDown: React.FC<DropDownProps> = ({ options = [] }) => {
   const onOptionClicked = (value: string) => () => {
     setSelectedOption(value);
     setIsOpen(false);
-    console.log(selectedOption);
   };
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setSelectedOption(e.target.value);
     setIsOpen(true)
-    console.log(isOpen);
   };
   
   return (

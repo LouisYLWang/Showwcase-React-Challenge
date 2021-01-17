@@ -1,8 +1,9 @@
 import React from "react";
 import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
-import { Card } from "../atoms/Card";
+import { Card, CardBody } from "../atoms/Card";
 import styled from "styled-components";
+import { Container } from "../atoms/Container";
 
 export const HelloPage: React.FC = () => {
   const StyledTitle = styled.p`
@@ -12,26 +13,14 @@ export const HelloPage: React.FC = () => {
     font-size: 30px;
   `;
 
-  const StyledBody = styled.p`
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font: var(--font_0);
-    font-size: 20px;
-  `;
-
-  const HelloContainer = styled.div`
-    padding: 20px;
-  `
-
   return (
-    <HelloContainer>
+    <Container>
       <Card>
         <StyledTitle> Hi there 👋! Welcome to Showwcase</StyledTitle>
-        <StyledBody>Type your name and click "Enter" below to begin!</StyledBody>
+        <CardBody>Type your name and click "Enter" below to begin!</CardBody>
         <Input placeholder="your name" onChange={() => {}}></Input>
-
-        <Button text="Enter" onClick={() => {}}></Button>
+        <Button onClick={() => {}}>{"Enter"}</Button>
       </Card>
-    </HelloContainer>
+    </Container>
   );
 };

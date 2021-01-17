@@ -29,15 +29,17 @@ export const StyledInput = styled.input`
   border-radius: 4px;
   text-overflow: ellipsis;
   appearance: none;
-  background-color: rgb(248, 249, 250);
+  background-color: #f8f9fa;
   transition-duration: 0.2s;
   transition-property: color, border-color, background-color;
+  font-family: Inter, sans-serif;
+
   &:hover {
-    border-color: rgb(100, 109, 246);
+    border-color: #646df6;
   }
 
   &:focus {
-    border-color: rgb(100, 109, 246);
+    border-color: #646df6;
   }
 `;
 
