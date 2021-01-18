@@ -73,7 +73,9 @@ export const SideBar: React.FC<SideBarProp> = ({}) => {
         </Link>
         <Link href="#test123">University of Showwcase</Link>
         <Link href="#test123">University of Longlonglong Showwcase</Link>
-        <Button onClick={handleClick}>{"+"}</Button>
+        <Button onClick={handleClick}>
+        <svg className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2602" width="15" height="15"><path d="M912 592h-320v320a80 80 0 0 1-160 0v-320h-320a80 80 0 0 1 0-160h320v-320a80 80 0 0 1 160 0v320h320a80 80 0 0 1 0 160z" p-id="2603" fill="#ffffff"></path></svg>
+        </Button>
         <EduModal ref={ref}></EduModal>
       </SideBarCard>
     </div>
