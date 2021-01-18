@@ -1,17 +1,33 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { IEducation } from "../../types/Education";
 import { Button } from "../atoms/Button";
 import { StyledCard } from "../atoms/Card";
 import { DropDown } from "../molecules/DropDown";
 
 interface EduModalProp {
-  props?: any;
+  saveEducation: (education: IEducation | any) => void;
   ref?: any;
 }
 
-export const EduModal: React.FC<EduModalProp> = forwardRef((props, ref) => {
+export const EduModal: React.FC<EduModalProp> = forwardRef(({saveEducation}, ref) => {
   const [value, setValue] = useState(false);
+  const [education, setEducation] = React.useState<IEducation| {}>()
+  
+  const handleEducationData = (e: React.FormEvent<HTMLInputElement>) => {
+    setEducation({
+      ...education,
+      [e.currentTarget.id]: e.currentTarget.value,
+    })
+  }
+
+  const addEducation = (e: React.FormEvent) => {
+    e.preventDefault()
+    saveEducation(education)
+  }
+
+  
   EduModal.displayName = "EduModal";
   const showEduModal = () => {
     setValue(true);
@@ -88,7 +104,7 @@ const CloseButton = styled(Button)`
   }
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.form`
   flex-direction: column;
   display: flex;
   position: absolute;
@@ -102,7 +118,6 @@ const ModalContainer = styled.div`
 `;
 
 const EduItem = styled.div`
-  color: grey;
   margin: 0 10px;
   width: calc(100% - 10px);
 `;
