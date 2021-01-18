@@ -47,7 +47,6 @@ export const Input: React.FC<InputProps> = ({ placeholder, value="", onClick }) 
   const [inputValue, setInputValue] = useState("");
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    console.log(e.target.value);
     setInputValue(e.target.value);
   };
 

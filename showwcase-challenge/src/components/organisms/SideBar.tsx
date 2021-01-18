@@ -12,7 +12,6 @@ export const SideBar: React.FC = () => {
   const [selected, setSelected] = useState("");
 
   const onSelected = (e: React.ChangeEvent<HTMLInputElement>) => () => {
-    console.log("here");
     e.target.style.fontWeight = "bold";
   };
 

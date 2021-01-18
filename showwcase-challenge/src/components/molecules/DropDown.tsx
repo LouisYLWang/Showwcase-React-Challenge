@@ -1,33 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { color } from "styled-system";
-import { Input, StyledInput } from "../atoms/Input";
 import PropTypes from "prop-types";
 
 interface DropDownProps {
   options?: Array<string>;
   select?: string;
-  id?:string;
-  InputChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  id:string;
+  InputChangeHandler: (id: string, value: string) => void;
 }
+
 
 export const DropDown: React.FC<DropDownProps> = ({ options = [], id, InputChangeHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("--select here--");
+
   const onOptionClicked = (value: string) => () => {
     setSelectedOption(value);
     setIsOpen(false);
   };
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(e.target.value);
-    InputChangeHandler(e);
-    setIsOpen(true)
-  };
   
+  useEffect(() => {
+    InputChangeHandler(id, selectedOption);
+    const select = document.getElementById(id);
+    if (select != undefined) {
+      select.innerHTML = selectedOption;
+    }
+  }, [selectedOption])
+
   return (
     <StyledDropDown>
-      <StyledInput id={id} placeholder={"selectedOption"} value={selectedOption} onChange={onChangeInput}></StyledInput>
+      <StyledSelect id={id} onClick={()=> setIsOpen(true)}></StyledSelect>
       {isOpen && (
         <StyledDropDownList>
           {options.map((option: string, index: number) => (
@@ -47,8 +49,43 @@ DropDown.propTypes = {
 };
 
 const StyledDropDown = styled.div`
-  width: 100%;
+  position: relative;
 `;
+
+const StyledSelect = styled.div`
+  width: 100%;
+  color: currentcolor;
+  display: block;
+  box-sizing: border-box;
+  margin: 10px 10px 0 0;
+  padding: 9px;
+  font-size: 16px;
+  text-align: left;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  font-weight: 400;
+  line-height: 21px;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  appearance: none;
+  background-color: #f8f9fa;
+  transition-duration: 0.2s;
+  transition-property: color, border-color, background-color;
+  font-family: Inter, sans-serif;
+  color: grey;
+
+  &:hover {
+    border-color: #646df6;
+  }
+
+  &:focus {
+    border-color: #646df6;
+  }
+`
 
 const StyledDropDownList = styled.ul`
   width: 100%;
@@ -63,6 +100,8 @@ const StyledDropDownList = styled.ul`
   font-size: 1.3rem;
   font-weight: 500;
   overflow: auto;
+  position: absolute;
+  z-index: 10;
   &:first-child {
     padding-top: 0em;
   }

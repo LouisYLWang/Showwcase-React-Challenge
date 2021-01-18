@@ -6,6 +6,7 @@ const initialState: EducationState = {
         {
             id: 1,
             name: "University of Washington",
+            degree: "Master",
             field: "Computer Science",
             startYear: 2019,
             endYear: 2021,
@@ -23,6 +24,7 @@ export const reducer = (
             const newEducation: IEducation = {
                 id: state.educations.length + 1,
                 name: action.education.name,
+                degree: action.education.degree,
                 field: action.education.field,
                 startYear: action.education.startYear,
                 endYear: action.education.endYear,
