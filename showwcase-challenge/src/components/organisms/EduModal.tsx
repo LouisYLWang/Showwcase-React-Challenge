@@ -12,29 +12,29 @@ interface EduModalProp {
 }
 
 export const EduModal: React.FC<EduModalProp> = forwardRef(({saveEducation}, ref) => {
-  const [value, setValue] = useState(false);
+  EduModal.displayName = "EduModal";
+  const [opened, setOpened] = useState(false);
   const [education, setEducation] = React.useState<IEducation| {}>()
   
-  const handleEducationData = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleEducationData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEducation({
       ...education,
       [e.currentTarget.id]: e.currentTarget.value,
     })
   }
 
-  const addEducation = (e: React.FormEvent) => {
+  const addEducation = (e: { preventDefault: () => void; }) => {
     e.preventDefault()
     saveEducation(education)
+    setOpened(false);
   }
 
-  
-  EduModal.displayName = "EduModal";
   const showEduModal = () => {
-    setValue(true);
+    setOpened(true);
   };
 
   const hideEduModal = () => {
-    setValue(false);
+    setOpened(false);
   };
 
   useImperativeHandle(ref, () => {
@@ -44,42 +44,44 @@ export const EduModal: React.FC<EduModalProp> = forwardRef(({saveEducation}, ref
   });
 
   return (
-    <StyledModal isOpen={value}>
-      <ModalContainer>
+    <StyledModal isOpen={opened}>
+      <ModalForm>
         <CloseButton onClick={hideEduModal}>
           <svg className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1107" width="13" height="13"><path d="M512 377.59953458L780.79935972 108.80017489c38.39995341-38.39995341 96.00004065-38.39995341 134.39999408 0s38.39995341 96.00004065 0 134.39999406L646.40046542 512l268.79935969 268.79935972c38.39995341 38.39995341 38.39995341 96.00004065 0 134.39999408s-96.00004065 38.39995341-134.39999406 0L512 646.40046542 243.20064028 915.19982511c-38.39995341 38.39995341-96.00004065 38.39995341-134.39999408 0-38.39995341-38.39995341-38.39995341-96.00004065 0-134.39999406L377.59953458 512 108.80017489 243.20064028C70.399593 204.80005842 70.399593 147.20075674 108.80017489 108.80017489c38.39995341-38.39995341 96.00004065-38.39995341 134.39999406 0L512 377.59953458Z" fill="white" p-id="1108" data-spm-anchor-id="a313x.7781069.0.i0" className="selected"></path></svg>
         </CloseButton>
         <StyledCard style={{ boxShadow: "Unset", width: "35vw" }}>
           <EduItem>
             <Label>School:</Label>
-            <DropDown options={["test1", "test2", "test3"]}></DropDown>
+            <DropDown id={"name"} options={["test1", "test2", "test3"]} InputChangeHandler={handleEducationData}
+></DropDown>
           </EduItem>
 
           <EduItem>
             <Label>Field of study:</Label>
-            <DropDown options={["test1", "test2", "test3"]}></DropDown>
+            <DropDown id={"field"} options={["test1", "test2", "test3"]} InputChangeHandler={handleEducationData}
+></DropDown>
           </EduItem>
 
           <EduItem style={{ display: "inline-flex" }}>
             <EduItem style={{marginLeft: "0px"}}>
-              <Label>Start Date:</Label>
-              <DropDown options={["test1", "test2", "test3"]}></DropDown>
+              <Label>Start Year:</Label>
+              <DropDown id={"startYear"} options={["test1", "test2", "test3"]} InputChangeHandler={handleEducationData}></DropDown>
             </EduItem>
 
             <EduItem style={{marginRight: "0px"}}>
               <Label>End Year (or expected):</Label>
-              <DropDown options={["test1", "test2", "test3"]}></DropDown>
+              <DropDown id={"endYear"} options={["test1", "test2", "test3"]} InputChangeHandler={handleEducationData}></DropDown>
             </EduItem>
           </EduItem>
 
           <EduItem>
             <Label>Description:</Label>
-            <Description></Description>
+            <Description id={"description"} onChange={(e)=> setEducation({...education, ["description"]:e.currentTarget.value})}> </Description>
           </EduItem>
 
         </StyledCard>
-        <Button onClick={hideEduModal}> submit </Button>
-      </ModalContainer>
+        <Button type={"submit"} disabled={education === undefined ? true : false} onClick={addEducation}> submit </Button>
+      </ModalForm>
     </StyledModal>
   );
 });
@@ -104,7 +106,7 @@ const CloseButton = styled(Button)`
   }
 `;
 
-const ModalContainer = styled.form`
+const ModalForm = styled.form`
   flex-direction: column;
   display: flex;
   position: absolute;

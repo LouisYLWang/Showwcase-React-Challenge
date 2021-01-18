@@ -7,7 +7,44 @@ import PropTypes from "prop-types";
 interface DropDownProps {
   options?: Array<string>;
   select?: string;
+  id?:string;
+  InputChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export const DropDown: React.FC<DropDownProps> = ({ options = [], id, InputChangeHandler }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const onOptionClicked = (value: string) => () => {
+    setSelectedOption(value);
+    setIsOpen(false);
+  };
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(e.target.value);
+    InputChangeHandler(e);
+    setIsOpen(true)
+  };
+  
+  return (
+    <StyledDropDown>
+      <StyledInput id={id} placeholder={"selectedOption"} value={selectedOption} onChange={onChangeInput}></StyledInput>
+      {isOpen && (
+        <StyledDropDownList>
+          {options.map((option: string, index: number) => (
+            <StyledDropDownListItem onClick={onOptionClicked(option)} key={index}>
+              {option}
+            </StyledDropDownListItem>
+          ))}
+        </StyledDropDownList>
+      )}
+    </StyledDropDown>
+  );
+};
+
+DropDown.propTypes = {
+  options: PropTypes.array,
+  select: PropTypes.string,
+};
 
 const StyledDropDown = styled.div`
   width: 100%;
@@ -42,37 +79,3 @@ const StyledDropDownListItem = styled.li`
     background: #f8f9fa;
   }
 `;
-
-export const DropDown: React.FC<DropDownProps> = ({ options = [] }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
-  const onOptionClicked = (value: string) => () => {
-    setSelectedOption(value);
-    setIsOpen(false);
-  };
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(e.target.value);
-    setIsOpen(true)
-  };
-  
-  return (
-    <StyledDropDown>
-      <StyledInput placeholder={"selectedOption"} value={selectedOption} onChange={onChangeInput}></StyledInput>
-      {isOpen && (
-        <StyledDropDownList>
-          {options.map((option: string, index: number) => (
-            <StyledDropDownListItem onClick={onOptionClicked(option)} key={index}>
-              {option}
-            </StyledDropDownListItem>
-          ))}
-        </StyledDropDownList>
-      )}
-    </StyledDropDown>
-  );
-};
-
-DropDown.propTypes = {
-  options: PropTypes.array,
-  select: PropTypes.string,
-};
