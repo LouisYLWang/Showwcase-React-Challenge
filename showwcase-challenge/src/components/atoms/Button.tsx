@@ -15,7 +15,9 @@ export const Button = styled.button`
   font-family: Inter, sans-serif;
   align-items: center;
   color: white;
-  max-width: 200px;
+  max-width: 200px;  
+  transition-duration: 0.2s;
+
   ${color}
   &:hover  {
       background-color: #4a61bf;

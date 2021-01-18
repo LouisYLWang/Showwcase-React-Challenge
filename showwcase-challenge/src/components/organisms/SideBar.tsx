@@ -8,7 +8,51 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { addEducation } from "../../store/actionCreators";
 import { Dispatch } from "redux";
 
-interface SideBarProp {}
+export const SideBar: React.FC = () => {
+  const [selected, setSelected] = useState("");
+
+  const onSelected = (e: React.ChangeEvent<HTMLInputElement>) => () => {
+    console.log("here");
+    e.target.style.fontWeight = "bold";
+  };
+
+  const ref = useRef(document.createElement("div"));
+
+  const educations: readonly IEducation[] = useSelector(
+    (state: EducationState) => state.educations,
+    shallowEqual
+  );
+
+  const dispatch: Dispatch<any> = useDispatch();
+
+  const saveEducation = useCallback(
+    (education: IEducation) => dispatch(addEducation(education)),
+    [dispatch]
+  )
+
+  const handleClick = () => {
+    (ref as any).current.showEduModal();
+  };
+
+  return (
+    <div style={{ position: "fixed", alignItems: "center" }}>
+      <SideBarCard>
+        <GreetTitle>Welcome {"NAME"}!</GreetTitle>
+        Please complete your education information!
+      </SideBarCard>
+
+      <SideBarCard>
+        {educations.map((education: IEducation) => (
+            <Link href={`#edu${education.id}`} key={education.id}>{education.name}</Link>
+          ))}
+        <Button onClick={handleClick}>
+        <svg className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2602" width="15" height="15"><path d="M912 592h-320v320a80 80 0 0 1-160 0v-320h-320a80 80 0 0 1 0-160h320v-320a80 80 0 0 1 160 0v320h320a80 80 0 0 1 0 160z" p-id="2603" fill="#ffffff"></path></svg>
+        </Button>
+        <EduModal saveEducation={saveEducation} ref={ref}></EduModal>
+      </SideBarCard>
+    </div>
+  );
+};
 
 export const Link = styled.a`
   color: currentcolor;
@@ -49,53 +93,3 @@ const SideBarCard = styled(StyledCard)`
   display: flex;
   flex-direction: column;
 `;
-
-export const SideBar: React.FC<SideBarProp> = ({}) => {
-  const [selected, setSelected] = useState("");
-
-  const onSelected = (e: React.ChangeEvent<HTMLInputElement>) => () => {
-    console.log("here");
-    e.target.style.fontWeight = "bold";
-  };
-
-  const ref = useRef(document.createElement("div"));
-
-  const education: readonly IEducation[] = useSelector(
-    (state: EducationState) => state.educations,
-    shallowEqual
-  );
-
-  const dispatch: Dispatch<any> = useDispatch();
-
-  const saveEducation = useCallback(
-    (education: IEducation) => dispatch(addEducation(education)),
-    [dispatch]
-  )
-
-  const handleClick = () => {
-    (ref as any).current.showEduModal();
-  };
-
-  return (
-    <div style={{ position: "fixed", alignItems: "center" }}>
-      <SideBarCard>
-        <GreetTitle>Welcome {"NAME"}!</GreetTitle>
-        Please complete your education information!
-      </SideBarCard>
-
-      <SideBarCard>
-        <Link href="#test123" onClick={() => onSelected}>
-          University of Showwcase
-        </Link>
-        <Link href="#test123">University of Showwcase</Link>
-        <Link href="#test123">University of Longlonglong Showwcase</Link>
-        <Button onClick={handleClick}>
-        <svg className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2602" width="15" height="15"><path d="M912 592h-320v320a80 80 0 0 1-160 0v-320h-320a80 80 0 0 1 0-160h320v-320a80 80 0 0 1 160 0v320h320a80 80 0 0 1 0 160z" p-id="2603" fill="#ffffff"></path></svg>
-        </Button>
-        <EduModal saveEducation={saveEducation} ref={ref}></EduModal>
-      </SideBarCard>
-    </div>
-  );
-};
-
-SideBar.propTypes = {};
