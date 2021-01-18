@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "../atoms/Container";
 import { EduCard } from "../organisms/EduCard";
-import { EduTopBar } from "../organisms/EduTopBar";
 import { SideBar } from "../organisms/SideBar";
 
 export const EduPage: React.FC = () => {

@@ -1,8 +1,5 @@
 import React from "react";
-import { Button } from "../atoms/Button";
-import { Input } from "../atoms/Input";
-import { StyledCard, CardBody } from "../atoms/Card";
-import { Container } from "../atoms/Container";
+import { StyledCard } from "../atoms/Card";
 import styled from "styled-components";
 
 export const EduCard: React.FC = () => {

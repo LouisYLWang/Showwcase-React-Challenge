@@ -1,8 +1,4 @@
 import React from "react";
-import { Button } from "../atoms/Button";
-import { Input } from "../atoms/Input";
-import { StyledCard, CardBody } from "../atoms/Card";
-import { Container } from "../atoms/Container";
 import styled from "styled-components";
 
 const TopBar = styled.div`

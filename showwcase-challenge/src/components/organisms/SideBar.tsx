@@ -1,10 +1,8 @@
-import React, { Component, useState } from "react";
-import { height, width } from "styled-system";
-import { Input } from "../atoms/Input";
+import React, { useRef, useState } from "react";
 import { StyledCard } from "../atoms/Card";
 import styled from "styled-components";
 import { Button } from "../atoms/Button";
-import { Container } from "../atoms/Container";
+import { EduModal } from "../organisms/EduModal";
 
 interface SideBarProp {}
 
@@ -13,6 +11,8 @@ export const Link = styled.a`
   text-align: left;
   display: flex;
   margin: 0 0 8px 0;
+  align-self: flex-start;
+
   &:link {
     text-decoration: none;
   }
@@ -31,11 +31,20 @@ export const Link = styled.a`
 `;
 
 const GreetTitle = styled.h1`
-    font-family: Inter, sans-serif;
-    text-align: left;
-    font-size: 18px;
-    margin: 5px 0;
-`
+  font-family: Inter, sans-serif;
+  text-align: left;
+  font-size: 18px;
+  margin: 5px 0;
+  align-self: flex-start
+`;
+
+const SideBarCard = styled(StyledCard)`
+  box-shadow: unset;
+  width: 15vw;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const SideBar: React.FC<SideBarProp> = ({}) => {
   const [selected, setSelected] = useState("");
@@ -45,21 +54,28 @@ export const SideBar: React.FC<SideBarProp> = ({}) => {
     e.target.style.fontWeight = "bold";
   };
 
-  return (
-    <div style={{ position: "fixed" }}>
-      <StyledCard style={{ boxShadow: "Unset", width: "15vw" }}>
-          <GreetTitle>Welcome {"NAME"}!</GreetTitle>
-          Please complete your education information!
-      </StyledCard>
+  const ref = useRef(document.createElement("div"));
 
-      <StyledCard style={{ boxShadow: "Unset", width: "15vw" }}>
+  const handleClick = () => {
+    (ref as any).current.showEduModal();
+  };
+
+  return (
+    <div style={{ position: "fixed", alignItems: "center" }}>
+      <SideBarCard>
+        <GreetTitle>Welcome {"NAME"}!</GreetTitle>
+        Please complete your education information!
+      </SideBarCard>
+
+      <SideBarCard>
         <Link href="#test123" onClick={() => onSelected}>
           University of Showwcase
         </Link>
         <Link href="#test123">University of Showwcase</Link>
         <Link href="#test123">University of Longlonglong Showwcase</Link>
-        <Button>{"+"}</Button>
-      </StyledCard>
+        <Button onClick={handleClick}>{"+"}</Button>
+        <EduModal ref={ref}></EduModal>
+      </SideBarCard>
     </div>
   );
 };
