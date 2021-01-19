@@ -6,18 +6,7 @@ import {
 import * as actionTypes from "./actionTypes";
 
 const initialState: EducationState = {
-  educations: [
-    {
-      id: 1,
-      name: "University of Washington",
-      degree: "Master",
-      field: "Computer Science",
-      startYear: 2019,
-      endYear: 2021,
-      description:
-        "Implement the screens based off the wireframes and api above using advanced techniques and industry best practices for your platform. Note that the wireframes may not be complete, so use your best judgment for UI/UX implementation.",
-    },
-  ],
+  educations: [],
 };
 
 export const reducer = (
@@ -31,6 +20,7 @@ export const reducer = (
         name: action.education.name,
         degree: action.education.degree,
         field: action.education.field,
+        GPA: action.education.GPA,
         startYear: action.education.startYear,
         endYear: action.education.endYear,
         description: action.education.description,

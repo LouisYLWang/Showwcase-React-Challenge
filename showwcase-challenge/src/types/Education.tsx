@@ -3,6 +3,7 @@ export interface IEducation {
     name: string,
     degree: string,
     field: string,
+    GPA: string,
     startYear: number,
     endYear: number,
     description: string,

@@ -21,7 +21,7 @@ export const EduCard: React.FC<EduCardProps> = ({cardId, education, removeEducat
   )
   
   const isGraduate = (education: IEducation) => {
-    return (education?.degree == "Master") || (education?.degree == "Doctor");
+    return (education?.degree === "Master") || (education?.degree === "Doctor");
   }
 
   return (
@@ -34,7 +34,8 @@ export const EduCard: React.FC<EduCardProps> = ({cardId, education, removeEducat
         {!isGraduate && "Undergraduate "}
         {education?.field} </EduTitle>
       <EduTitle> @ {education?.name} </EduTitle>
-      <Date> {education?.startYear} - {education?.endYear}</Date>
+      <Subinfo> {education?.startYear} - {education?.endYear}</Subinfo>
+      <Subinfo>GPA: {education?.GPA}</Subinfo>
       <EduListElement> {education?.description} </EduListElement>
     </EduCardContainer>
   );
@@ -51,17 +52,17 @@ export const PlaceholderEduCard = styled(EduCardContainer)`
 `
 
 const EduTitle = styled.p`
-font-family: Inter, sans-serif;
-text-align: left;
-font-size: 18px;
-margin: 0;
+  font-family: Inter, sans-serif;
+  text-align: left;
+  font-size: 18px;
+  margin: 0;
 `;
 
-const Date = styled.p`
+const Subinfo = styled.p`
   font-family: Inter, sans-serif;
   text-align: left;
   font-size: 13px;
-  margin: 5px;
+  margin: 5px 0 0 0;
   color: #646df6;
 `;
 

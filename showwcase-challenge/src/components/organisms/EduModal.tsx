@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { IEducation } from "../../types/Education";
 import { Button } from "../atoms/Button";
 import { StyledCard } from "../atoms/Card";
+import { StyledInput } from "../atoms/Input";
 import { DropDown } from "../molecules/DropDown";
 import { InputDropDown } from "../molecules/InputDropDown";
 
@@ -28,6 +29,14 @@ export const EduModal: React.FC<EduModalProp> = forwardRef(
         [id]: value,
       });
     };
+
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setEducation({
+        ...education,
+        [e.target.id]: e.target.value,
+      });
+    };
+    
 
     const addEducation = (e: { preventDefault: () => void }) => {
       e.preventDefault();
@@ -73,13 +82,24 @@ export const EduModal: React.FC<EduModalProp> = forwardRef(
               ></InputDropDown>
             </EduItem>
 
-            <EduItem>
-              <Label>Degree:</Label>
-              <DropDown
-                id={"degree"}
-                options={["Master", "Bachelor", "Doctor"]}
-                InputChangeHandler={handleEducationData}
-              ></DropDown>
+            <EduItem style={{ display: "inline-flex" }}>
+              <EduItem style={{ marginLeft: "0px" }}>
+                <Label>Degree:</Label>
+                <DropDown
+                  id={"degree"}
+                  options={["Master", "Bachelor", "Doctor"]}
+                  InputChangeHandler={handleEducationData}
+                ></DropDown>
+              </EduItem>
+
+              <EduItem style={{ marginRight: "0px" }}>
+                <Label>GPA:</Label>
+                <StyledInput 
+                  id={"GPA"}
+                  placeholder="--type here--"
+                  onChange={onInputChange}
+                ></StyledInput>
+              </EduItem>
             </EduItem>
 
             <EduItem>
@@ -118,7 +138,6 @@ export const EduModal: React.FC<EduModalProp> = forwardRef(
                 ></DropDown>
               </EduItem>
             </EduItem>
-
             <EduItem>
               <Label>Description:</Label>
               <Description
