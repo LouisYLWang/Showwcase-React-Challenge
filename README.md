@@ -1,5 +1,8 @@
 # Showwcase Developer Challenge
 
+https://showwcase.herokuapp.com/
+(fetch university list is blocked by Heroku)
+
 ## Requirements checklist:
 
 ✅ Users must be able to enter as many educational experiences as they please;
