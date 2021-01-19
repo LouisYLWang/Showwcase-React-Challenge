@@ -1,13 +1,4 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
-
-interface InputProps {
-  placeholder?: string;
-  value?: string;
-  onClick?: () => void;
-  onChange?: Function;
-}
 
 export const StyledInput = styled.input`
   width: 100%;
@@ -42,22 +33,3 @@ export const StyledInput = styled.input`
     border-color: #646df6;
   }
 `;
-
-// export const Input: React.FC<InputProps> = ({ placeholder, value="", onClick }) => {
-//   const [inputValue, setInputValue] = useState("");
-//   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     e.stopPropagation();
-//     setInputValue(e.target.value);
-//   };
-
-//   return (
-//     <StyledInput placeholder={placeholder} value={inputValue} onClick={onClick} onChange={onChangeInput}></StyledInput>
-//   );
-// };
-
-// Input.propTypes = {
-//   placeholder: PropTypes.string,
-//   value: PropTypes.string,
-//   onClick: PropTypes.func,
-//   onChange: PropTypes.func,
-// };

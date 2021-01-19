@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 import { StyledCard } from "../atoms/Card";
 import styled from "styled-components";
 import { Button } from "../atoms/Button";

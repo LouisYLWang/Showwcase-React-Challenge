@@ -16,7 +16,6 @@ Card.propTypes = {
   borderStyle: PropTypes.string,
 };
 
-
 export const StyledCard = styled.div`
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 15px;

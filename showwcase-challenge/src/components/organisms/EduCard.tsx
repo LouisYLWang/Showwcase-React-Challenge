@@ -40,11 +40,14 @@ export const EduCard: React.FC<EduCardProps> = ({cardId, education, removeEducat
   );
 };
 
-const EduCardContainer = styled(StyledCard)`
+export const EduCardContainer = styled(StyledCard)`
   box-shadow: Unset;
   width: 35vw;
   display: flex;
   flex-direction: column;
+`
+export const PlaceholderEduCard = styled(EduCardContainer)`
+  align-items: center
 `
 
 const EduTitle = styled.p`

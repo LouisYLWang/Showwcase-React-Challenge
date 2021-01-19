@@ -5,30 +5,30 @@ import { CardBody } from "../atoms/Card";
 import styled from "styled-components";
 import { RouteComponentProps } from "react-router";
 
-interface HelloPageProps extends RouteComponentProps {
+interface HelloPageProps extends RouteComponentProps {}
 
-}
-
-export const HelloPage: React.FC<HelloPageProps> = ({history}) => {
+export const HelloPage: React.FC<HelloPageProps> = ({ history }) => {
   const [name, setName] = useState("");
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
+    setName(e.target.value);
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     localStorage.setItem("name", name);
-    history.push("/education")
-  }
+    history.push("/education");
+  };
 
   return (
     <HelloPageContainer>
-        <StyledTitle> Hi {name} 👋! Welcome to Showwcase</StyledTitle>
-        <CardBody>Type your name and click "Enter" below to begin!</CardBody>
-        <StyledInput placeholder="your name" onChange={onChangeInput} value={name} ></StyledInput>
-        <FancyButton onClick={handleSubmit}>
-          {"Enter"}
-          </FancyButton>
+      <StyledTitle> Hi {name} 👋! Welcome to Showwcase</StyledTitle>
+      <CardBody>Type your name and click "Enter" below to begin!</CardBody>
+      <StyledInput
+        placeholder="your name"
+        onChange={onChangeInput}
+        value={name}
+      ></StyledInput>
+      <FancyButton onClick={handleSubmit}>{"Enter"}</FancyButton>
     </HelloPageContainer>
   );
 };
@@ -68,4 +68,3 @@ const FancyButton = styled(Button)`
       fill: white;
   }
 `;
-

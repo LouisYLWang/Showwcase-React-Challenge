@@ -1,11 +1,7 @@
 import React from "react";
 
-interface FormProps {  
-}
+interface FormProps {}
 
 export const Form: React.FC<FormProps> = ({}) => {
-  return (
-    <form>
-    </form>
-  );
+  return <form></form>;
 };
