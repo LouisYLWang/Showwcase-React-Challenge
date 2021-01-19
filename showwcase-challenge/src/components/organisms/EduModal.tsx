@@ -43,8 +43,13 @@ export const EduModal: React.FC<EduModalProp> = forwardRef(
       setOpened(false);
     };
 
-    const startYears = Array.from(Array(new Date().getFullYear() - 1970), (_, i) => (i + 1970).toString()).reverse()
-    const endYears = Array.from(Array(startYear + 10 - startYear), (_, i) => (i + startYear).toString()).reverse()
+    const startYears = Array.from(
+      Array(new Date().getFullYear() - 1970),
+      (_, i) => (i + 1970).toString()
+    ).reverse();
+    const endYears = Array.from(Array(startYear + 10 - startYear), (_, i) =>
+      (i + startYear).toString()
+    ).reverse();
 
     useImperativeHandle(ref, () => {
       return {
@@ -81,7 +86,15 @@ export const EduModal: React.FC<EduModalProp> = forwardRef(
               <Label>Field of study:</Label>
               <DropDown
                 id={"field"}
-                options={["test1", "test2", "test3"]}
+                options={[
+                  "Aerospace Engineering",
+                  "Computational Biology",
+                  "Computer Engineering",
+                  "Computer Science",
+                  "Data Science",
+                  "Electrical Engineering",
+                  "Pokemon Training",
+                ]}
                 InputChangeHandler={handleEducationData}
               ></DropDown>
             </EduItem>
@@ -141,7 +154,7 @@ const StyledModal = styled(Modal)`
   display: flex;
   flex-direction: column;
 
-  &>.ul {
+  & > .ul {
     width: inherit;
   }
 `;

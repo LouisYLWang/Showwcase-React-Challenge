@@ -43,21 +43,21 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const Input: React.FC<InputProps> = ({ placeholder, value="", onClick }) => {
-  const [inputValue, setInputValue] = useState("");
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setInputValue(e.target.value);
-  };
+// export const Input: React.FC<InputProps> = ({ placeholder, value="", onClick }) => {
+//   const [inputValue, setInputValue] = useState("");
+//   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     e.stopPropagation();
+//     setInputValue(e.target.value);
+//   };
 
-  return (
-    <StyledInput placeholder={placeholder} value={inputValue} onClick={onClick} onChange={onChangeInput}></StyledInput>
-  );
-};
+//   return (
+//     <StyledInput placeholder={placeholder} value={inputValue} onClick={onClick} onChange={onChangeInput}></StyledInput>
+//   );
+// };
 
-Input.propTypes = {
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onClick: PropTypes.func,
-  onChange: PropTypes.func,
-};
+// Input.propTypes = {
+//   placeholder: PropTypes.string,
+//   value: PropTypes.string,
+//   onClick: PropTypes.func,
+//   onChange: PropTypes.func,
+// };

@@ -9,14 +9,7 @@ import { addEducation } from "../../store/actionCreators";
 import { Dispatch } from "redux";
 
 export const SideBar: React.FC = () => {
-  const [selected, setSelected] = useState("");
-
-  const onSelected = (e: React.ChangeEvent<HTMLInputElement>) => () => {
-    e.target.style.fontWeight = "bold";
-  };
-
   const ref = useRef(document.createElement("div"));
-
   const educations: readonly IEducation[] = useSelector(
     (state: EducationState) => state.educations,
     shallowEqual
@@ -36,7 +29,7 @@ export const SideBar: React.FC = () => {
   return (
     <div style={{ position: "fixed", alignItems: "center" }}>
       <SideBarCard>
-        <GreetTitle>Welcome {"NAME"}!</GreetTitle>
+        <GreetTitle>Welcome {localStorage.getItem("name")}!</GreetTitle>
         Please complete your education information!
       </SideBarCard>
 

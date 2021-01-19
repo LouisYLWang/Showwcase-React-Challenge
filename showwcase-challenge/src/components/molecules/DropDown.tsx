@@ -48,11 +48,11 @@ DropDown.propTypes = {
   select: PropTypes.string,
 };
 
-const StyledDropDown = styled.div`
+export const StyledDropDown = styled.div`
   position: relative;
 `;
 
-const StyledSelect = styled.div`
+export const StyledSelect = styled.div`
   width: 100%;
   color: currentcolor;
   display: block;
@@ -87,7 +87,7 @@ const StyledSelect = styled.div`
   }
 `
 
-const StyledDropDownList = styled.ul`
+export const StyledDropDownList = styled.ul`
   width: 100%;
   padding: 0;
   margin-top: 5px;
@@ -107,7 +107,7 @@ const StyledDropDownList = styled.ul`
   }
 `;
 
-const StyledDropDownListItem = styled.li`
+export const StyledDropDownListItem = styled.li`
   cursor: pointer;
   list-style: none;
   text-align: left;

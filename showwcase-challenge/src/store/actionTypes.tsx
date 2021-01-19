@@ -1,3 +1,2 @@
 export const ADD_EDUCTION = "ADD_EDUCTION"
 export const REMOVE_EDUCTION = "REMOVE_EDUCTION"
-export const FETCH_SCHOOLS = "FETCH_SCHOOLS"

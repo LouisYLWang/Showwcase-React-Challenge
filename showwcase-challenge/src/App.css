@@ -2,6 +2,7 @@
   font: var(--font_0);
   margin-top: 30px;
   font-family: Inter, sans-serif;
+  display: flex;
 }
 
 .App-logo {

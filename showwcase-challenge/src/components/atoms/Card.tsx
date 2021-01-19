@@ -7,6 +7,16 @@ interface CardProps {
   borderStyle?: string;
 }
 
+export const Card: React.FC<CardProps> = ({ children }) => {
+  return <StyledCard>{children}</StyledCard>;
+};
+
+Card.propTypes = {
+  children: PropTypes.object.isRequired,
+  borderStyle: PropTypes.string,
+};
+
+
 export const StyledCard = styled.div`
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 15px;
@@ -23,12 +33,3 @@ export const CardBody = styled.p`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 `;
-
-export const Card: React.FC<CardProps> = ({ children }) => {
-  return <StyledCard>{children}</StyledCard>;
-};
-
-Card.propTypes = {
-  children: PropTypes.object.isRequired,
-  borderStyle: PropTypes.string,
-};

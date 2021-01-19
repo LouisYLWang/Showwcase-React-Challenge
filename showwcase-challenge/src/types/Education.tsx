@@ -18,4 +18,9 @@ export type EducationAction = {
     education: IEducation,
 }
 
+export type FetchEducationAction = {
+    type: string,
+    schools: string[],
+}
+
 export type DispatchType = (args: EducationAction) => EducationAction;
